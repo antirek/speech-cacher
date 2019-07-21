@@ -4,6 +4,7 @@
   "description": "Cache tts files and asr phrases",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "test": "jest",
     "lint-fix": "npx eslint --fix ."
   },

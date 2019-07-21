@@ -26,10 +26,10 @@ module.exports = (yaTTS, cache) => {
     if (!cache.checkFile(hash)) {
       console.log('no in cache, generate');
       yaTTS.generate(text, params)
-          .then(() => {
+          .then((hash2) => {
             res.json({
               status: 'OK',
-              id: hash,
+              id: hash2,
               cache: false,
             });
           }).catch((err) => {
@@ -37,7 +37,7 @@ module.exports = (yaTTS, cache) => {
             res.json({status: 'Error'});
           });
     } else {
-      console.log('from cache');
+      console.log('from cache, file', hash);
       res.json({
         status: 'OK',
         id: hash,
@@ -56,7 +56,6 @@ module.exports = (yaTTS, cache) => {
         schema: {
           $ref: '#/definitions/Text',
         },
-
         required: true,
         description: 'text for speech synthesis',
       },
