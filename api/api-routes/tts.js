@@ -10,23 +10,22 @@ module.exports = (yaTTS, cache) => {
 
     const text = req.body.text;
     console.log('text for generate', text);
-
-    const options = {};
+    console.log('voice', req.body.voice);
 
     const params = {
       text: text,
-      voice: options.voice || 'zahar',
-      emotion: options.emotion || 'good',
-      lang: options.lang || 'ru-RU',
-      speed: options.speed || '1.0',
-      format: options.format || 'oggopus',
+      voice: req.body.voice || 'zahar',
+      emotion: req.body.emotion || 'good',
+      lang: req.body.lang || 'ru-RU',
+      speed: req.body.speed || '1.0',
+      format: req.body.format || 'oggopus',
     };
 
     const hash = cache.getHash(params);
 
     if (!cache.checkFile(hash)) {
       console.log('no in cache, generate');
-      yaTTS.generate(text)
+      yaTTS.generate(text, params)
           .then(() => {
             res.json({
               status: 'OK',

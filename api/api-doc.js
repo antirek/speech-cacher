@@ -16,9 +16,29 @@ module.exports = {
         text: {
           type: 'string',
         },
+        voice: {
+          type: 'string',
+        },
+        emotion: {
+          type: 'string',
+        },
+        lang: {
+          type: 'string',
+        },
+        speed: {
+          type: 'string',
+        },
+        format: {
+          type: 'string',
+        },
       },
       example: {
         text: 'hello world',
+        voice: 'zahar',
+        emotion: 'good',
+        lang: 'ru-RU',
+        speed: '1.0',
+        format: 'oggopus',
       },
       additionalProperties: true,
     },
