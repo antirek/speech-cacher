@@ -5,17 +5,17 @@ const path = require('path');
 const config = {
   cacheDir: '/tmp',
   yandexCloudApiKey: '111',
-}
+};
 
 const Cache = require('../lib/cache');
 const cache = new Cache({
-    cacheDir: config.cacheDir
-  });
+  cacheDir: config.cacheDir,
+});
 
 const YandexTTS = require('../lib/yandex-tts');
 const yaTTS = new YandexTTS({
-    apiKey: config.yandexCloudApiKey
-  }, cache);
+  apiKey: config.yandexCloudApiKey,
+}, cache);
 
 
 yaTTS.generate = jest.fn().mockReturnValue(Promise.resolve());
@@ -31,7 +31,6 @@ const app = createApp({
 });
 
 
-
 describe('api tts', () => {
   it('get file from cache', (done) => {
     const server = app.listen(3000);
@@ -44,22 +43,22 @@ describe('api tts', () => {
       }),
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     })
-    .then((res) => {      
-      expect(res.status).toBe(200);
-      return res.json();
-    })
-    .then((json) => {
-      console.log('json:', json);
-      
-      expect(json.cache).toEqual(true);
-      expect(json.status).toEqual('OK');
-    })
-    .then(() => {
-      server.close();
-      done();
-    });
+        .then((res) => {
+          expect(res.status).toBe(200);
+          return res.json();
+        })
+        .then((json) => {
+          console.log('json:', json);
+
+          expect(json.cache).toEqual(true);
+          expect(json.status).toEqual('OK');
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
   });
 
   it('get file from service ya tts', (done) => {
@@ -73,21 +72,21 @@ describe('api tts', () => {
       }),
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     })
-    .then((res) => {      
-      expect(res.status).toBe(200);
-      return res.json();
-    })
-    .then((json) => {
-      console.log('json:', json);
-      
-      expect(json.cache).toEqual(false);
-      expect(json.status).toEqual('OK');
-    })
-    .then(() => {
-      server.close();
-      done();
-    });
+        .then((res) => {
+          expect(res.status).toBe(200);
+          return res.json();
+        })
+        .then((json) => {
+          console.log('json:', json);
+
+          expect(json.cache).toEqual(false);
+          expect(json.status).toEqual('OK');
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
   });
 });

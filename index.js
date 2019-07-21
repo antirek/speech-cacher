@@ -5,13 +5,13 @@ const createApp = require('./app').createApp;
 
 const Cache = require('./lib/cache');
 const cache = new Cache({
-    cacheDir: config.cacheDir
-  });
+  cacheDir: config.cacheDir,
+});
 
 const YandexTTS = require('./lib/yandex-tts');
 const yaTTS = new YandexTTS({
-    apiKey: config.yandexCloudApiKey
-  }, cache);
+  apiKey: config.yandexCloudApiKey,
+}, cache);
 
 const app = createApp({
   desciption: 'Speech API',

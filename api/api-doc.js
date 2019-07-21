@@ -14,14 +14,14 @@ module.exports = {
       type: 'object',
       properties: {
         text: {
-          type: 'string',          
-        }
+          type: 'string',
+        },
       },
       example: {
-        text: "hello world"
+        text: 'hello world',
       },
       additionalProperties: true,
-    }
+    },
   },
   // paths are derived from args.routes.  These are filled in by fs-routes.
   paths: {},
