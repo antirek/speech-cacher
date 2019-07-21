@@ -123,4 +123,20 @@ describe('api tts', () => {
           done();
         });
   });
+
+  it('get file with options', (done) => {
+    const server = app.listen(3000);
+    cache.getFilename = jest.fn().mockReturnValue(
+      path.resolve(__dirname, './ttsSpec.js'));
+
+    fetch('http://localhost:3000/v1/tts/34758493759834795')
+        .then((res) => {
+          // console.log(res);
+          expect(res.status).toBe(200);
+        })
+        .then(() => {
+          server.close();
+          done();
+        });
+  });
 });
