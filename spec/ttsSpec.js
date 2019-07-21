@@ -1,0 +1,93 @@
+const fetch = require('node-fetch');
+const createApp = require('../app').createApp;
+const path = require('path');
+
+const config = {
+  cacheDir: '/tmp',
+  yandexCloudApiKey: '111',
+}
+
+const Cache = require('../lib/cache');
+const cache = new Cache({
+    cacheDir: config.cacheDir
+  });
+
+const YandexTTS = require('../lib/yandex-tts');
+const yaTTS = new YandexTTS({
+    apiKey: config.yandexCloudApiKey
+  }, cache);
+
+
+yaTTS.generate = jest.fn().mockReturnValue(Promise.resolve());
+
+const app = createApp({
+  desciption: 'Speech API',
+  apiDoc: require('../api/api-doc.js'),
+  paths: path.resolve(__dirname, './../api/api-routes'),
+  dependencies: {
+    yaTTS,
+    cache,
+  },
+});
+
+
+
+describe('api tts', () => {
+  it('get file from cache', (done) => {
+    const server = app.listen(3000);
+    cache.checkFile = jest.fn().mockReturnValue(true);
+
+    fetch('http://localhost:3000/v1/tts', {
+      method: 'post',
+      body: JSON.stringify({
+        text: 'hello world',
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((res) => {      
+      expect(res.status).toBe(200);
+      return res.json();
+    })
+    .then((json) => {
+      console.log('json:', json);
+      
+      expect(json.cache).toEqual(true);
+      expect(json.status).toEqual('OK');
+    })
+    .then(() => {
+      server.close();
+      done();
+    });
+  });
+
+  it('get file from service ya tts', (done) => {
+    const server = app.listen(3000);
+    cache.checkFile = jest.fn().mockReturnValue(false);
+
+    fetch('http://localhost:3000/v1/tts', {
+      method: 'post',
+      body: JSON.stringify({
+        text: 'hello world',
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((res) => {      
+      expect(res.status).toBe(200);
+      return res.json();
+    })
+    .then((json) => {
+      console.log('json:', json);
+      
+      expect(json.cache).toEqual(false);
+      expect(json.status).toEqual('OK');
+    })
+    .then(() => {
+      server.close();
+      done();
+    });
+  });
+});
