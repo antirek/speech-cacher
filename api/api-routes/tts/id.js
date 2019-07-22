@@ -47,14 +47,14 @@ module.exports = (yaTTS, cache) => {
   };
 
   post.apiDoc = {
-    description: 'post text to generate speech file',
+    description: 'post text to generate speech file, return id',
     tags: ['tts'],
     parameters: [
       {
         name: 'text',
         in: 'body',
         schema: {
-          $ref: '#/definitions/Text',
+          $ref: '#/definitions/TextToSpeech',
         },
         required: true,
         description: 'text for speech synthesis',

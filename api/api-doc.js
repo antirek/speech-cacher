@@ -10,7 +10,7 @@ module.exports = {
     Error: {
       additionalProperties: true,
     },
-    Text: {
+    TextToSpeech: {
       type: 'object',
       properties: {
         text: {

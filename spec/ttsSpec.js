@@ -34,7 +34,7 @@ describe('api tts', () => {
     const server = app.listen(3000);
     cache.checkFile = jest.fn().mockReturnValue(true);
 
-    fetch('http://localhost:3000/v1/tts', {
+    fetch('http://localhost:3000/v1/tts/id', {
       method: 'post',
       body: JSON.stringify({
         text: 'hello world',
@@ -63,7 +63,7 @@ describe('api tts', () => {
     const server = app.listen(3000);
     cache.checkFile = jest.fn().mockReturnValue(false);
 
-    fetch('http://localhost:3000/v1/tts', {
+    fetch('http://localhost:3000/v1/tts/id', {
       method: 'post',
       body: JSON.stringify({
         text: 'hello world',
@@ -93,7 +93,7 @@ describe('api tts', () => {
     const server = app.listen(3000);
     cache.checkFile = jest.fn().mockReturnValue(true);
 
-    fetch('http://localhost:3000/v1/tts', {
+    fetch('http://localhost:3000/v1/tts/id', {
       method: 'post',
       body: JSON.stringify({
         text: 'hello world 2',
