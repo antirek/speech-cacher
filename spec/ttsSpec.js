@@ -17,6 +17,11 @@ const yaTTS = new YandexTTS({
   apiKey: config.yandexCloudApiKey,
 }, cache);
 
+const YandexASR = require('../lib/yandex-asr');
+const yaASR = new YandexASR({
+  apiKey: config.yandexCloudApiKey,
+}, cache);
+
 yaTTS.generate = jest.fn().mockReturnValue(Promise.resolve());
 
 const app = createApp({
@@ -26,6 +31,7 @@ const app = createApp({
   dependencies: {
     yaTTS,
     cache,
+    yaASR,
   },
 });
 

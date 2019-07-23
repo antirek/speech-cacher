@@ -13,12 +13,19 @@ const yaTTS = new YandexTTS({
   apiKey: config.yandexCloudApiKey,
 }, cache);
 
+const YandexASR = require('./lib/yandex-asr');
+const yaASR = new YandexASR({
+  apiKey: config.yandexCloudApiKey,
+}, cache);
+
+
 const app = createApp({
   desciption: 'Speech API',
   apiDoc: require('./api/api-doc.js'),
   paths: path.resolve(__dirname, 'api/api-routes'),
   dependencies: {
     yaTTS,
+    yaASR,
     cache,
   },
 });
