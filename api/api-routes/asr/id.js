@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports = (yaASR, cache) => {
   /**
   *
@@ -40,8 +42,8 @@ module.exports = (yaASR, cache) => {
 
       yaASR.recognize(filename)
           .then((result) => {
-            console.log('end recognize', result);
-            // write to file
+            // console.log('end recognize', result);
+            fs.appendFileSync(filename + '.txt', JSON.stringify(result));
           });
     });
   };

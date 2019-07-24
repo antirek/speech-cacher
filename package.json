@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/antirek/speech-cacher#readme",
   "devDependencies": {
+    "form-data": "^2.5.0",
     "jest": "^24.8.0"
   },
   "dependencies": {

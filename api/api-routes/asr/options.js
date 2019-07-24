@@ -1,32 +1,14 @@
 
 module.exports = () => {
   /**
-    *
-    * @param {Object} req
-    * @param {Object} res
-    */
+      *
+      * @param {Object} req
+      * @param {Object} res
+      */
   function get(req, res) {
     console.log('request options variants');
 
     res.json({
-      voice: {
-        title: 'Голос',
-        variants: [
-          {
-            title: 'Оксана',
-            value: 'oksana',
-          },
-        ],
-      },
-      emotion: {
-        title: 'Эмоция',
-        variants: [
-          {
-            title: 'Доброжелательный',
-            value: 'good',
-          },
-        ],
-      },
       lang: {
         title: 'Язык',
         variants: [
@@ -49,12 +31,38 @@ module.exports = () => {
           },
         ],
       },
+      topic: {
+        title: 'Языковая модель',
+        varaiants: [
+          {
+            title: 'Короткие запросы',
+            value: 'general',
+          },
+          {
+            title: 'Адреса',
+            value: 'maps',
+          },
+        ],
+      },
+      profanityFilter: {
+        title: 'Фильтр ненормативной лексики',
+        varaiants: [
+          {
+            title: 'Включен',
+            value: 'true',
+          },
+          {
+            title: 'Выключен',
+            value: 'false',
+          },
+        ],
+      },
     });
   }
 
   get.apiDoc = {
-    description: 'get available TTS options variants',
-    tags: ['tts'],
+    description: 'get available ASR options variants',
+    tags: ['asr'],
     produces: [
       'application/json',
     ],
