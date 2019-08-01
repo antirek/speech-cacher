@@ -5,6 +5,7 @@ const path = require('path');
 const config = {
   cacheDir: '/tmp',
   yandexCloudApiKey: '111',
+  apiKeys: ['1234'],
 };
 
 const Cache = require('../lib/cache');
@@ -33,7 +34,7 @@ const app = createApp({
     cache,
     yaASR,
   },
-});
+}, config);
 
 describe('api tts', () => {
   it('get file from cache', (done) => {
@@ -47,6 +48,7 @@ describe('api tts', () => {
       }),
       headers: {
         'Content-Type': 'application/json',
+        'X-API-Key': '1234',
       },
     })
         .then((res) => {
@@ -76,6 +78,7 @@ describe('api tts', () => {
       }),
       headers: {
         'Content-Type': 'application/json',
+        'X-API-Key': '1234',
       },
     })
         .then((res) => {
@@ -111,6 +114,7 @@ describe('api tts', () => {
       }),
       headers: {
         'Content-Type': 'application/json',
+        'X-API-Key': '1234',
       },
     })
         .then((res) => {
@@ -135,7 +139,11 @@ describe('api tts', () => {
     cache.getFilename = jest.fn().mockReturnValue(
         path.resolve(__dirname, './ttsSpec.js'));
 
-    fetch('http://localhost:3000/v1/tts/34758493759834795')
+    fetch('http://localhost:3000/v1/tts/34758493759834795', {
+      headers: {
+        'X-API-Key': '1234',
+      },
+    })
         .then((res) => {
           // console.log(res);
           expect(res.status).toBe(200);

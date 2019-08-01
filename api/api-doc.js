@@ -6,6 +6,19 @@ module.exports = {
     title: 'speech api',
     version: '1.0.0',
   },
+  securityDefinitions: {
+    // # X-API-Key: abcdef12345
+    APIKeyHeader: {
+      type: 'apiKey',
+      in: 'header',
+      name: 'X-API-Key',
+    },
+  },
+  security: [
+    {
+      APIKeyHeader: [],
+    },
+  ],
   definitions: {
     Error: {
       additionalProperties: true,

@@ -30,7 +30,7 @@ const app = createApp({
     yaASR,
     cache,
   },
-});
+}, config);
 
 app.listen(config.port, () => {
   console.log('started at ', config.port);

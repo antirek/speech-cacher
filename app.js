@@ -4,12 +4,19 @@ const bodyParser = require('body-parser');
 const openapi = require('express-openapi');
 const fileUpload = require('express-fileupload');
 
-const createApp = (api) => {
+const checkApikey = require('./lib/checkAuth');
+
+const createApp = (api, config) => {
   const app = express();
 
   app.use(bodyParser.json());
   app.use(cors());
   app.use(fileUpload());
+
+  app.use(checkApikey({
+    apiKeys: config.apiKeys,
+    authHeader: 'X-API-Key',
+  }));
 
   openapi.initialize({
     apiDoc: api.apiDoc, // require('./api-doc.js'),

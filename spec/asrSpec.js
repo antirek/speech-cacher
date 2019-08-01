@@ -7,6 +7,7 @@ const fs = require('fs');
 const config = {
   cacheDir: '/tmp',
   yandexCloudApiKey: '111',
+  apiKeys: ['1234'],
 };
 
 const Cache = require('../lib/cache');
@@ -36,7 +37,7 @@ const app = createApp({
     cache,
     yaASR,
   },
-});
+}, config);
 
 describe('api asr', () => {
   it('post speech file', (done) => {
@@ -53,7 +54,7 @@ describe('api asr', () => {
     fetch('http://localhost:3000/v1/asr/id', {
       method: 'post',
       body: formData,
-
+      headers: {'X-API-Key': '1234'},
     })
         .then((res) => {
           expect(res.status).toBe(200);
