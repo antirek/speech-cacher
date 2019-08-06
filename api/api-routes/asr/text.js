@@ -77,7 +77,7 @@ module.exports = (yaASR, cache) => {
         in: 'formData',
         type: 'file',
         required: true,
-        description: 'text for speech synthesis',
+        description: 'file for speech recognition',
       },
     ],
     produces: [
