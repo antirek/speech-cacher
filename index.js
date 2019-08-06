@@ -33,5 +33,5 @@ const app = createApp({
 }, config);
 
 app.listen(config.port, () => {
-  console.log('started at ', config.port);
+  console.log('started at', config.port, 'with', config);
 });
