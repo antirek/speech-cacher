@@ -16,6 +16,7 @@ const createApp = (api, config) => {
   app.use(checkApikey({
     apiKeys: config.apiKeys,
     authHeader: 'X-API-Key',
+    excludes: ['/v1/api'],
   }));
 
   openapi.initialize({

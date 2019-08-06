@@ -1,6 +1,6 @@
 {
   "name": "speech-cacher",
-  "version": "19.7.1",
+  "version": "19.8.1",
   "description": "Cache tts files and asr phrases",
   "main": "index.js",
   "bin": {
