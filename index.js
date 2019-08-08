@@ -3,6 +3,13 @@
 const config = require('config');
 const path = require('path');
 
+const allApiKeysIsUUID = require('./lib/checkUUID').allApiKeysIsUUID;
+
+if (!allApiKeysIsUUID(config.apiKeys)) {
+  console.log('not all apiKeys is UUID format');
+  process.exit(1);
+}
+
 const createApp = require('./app').createApp;
 
 const Cache = require('./lib/cache');

@@ -14,7 +14,10 @@
 
 ## Конфигурация
 
-Укажите Yandex.Cloud API key в конфигурационном файле.
+- Укажите Yandex.Cloud API key в конфигурационном файле.
+
+- Задайте ключи доступа к API speech-cacher'а в формате UUIDv4 [Генератор UUID](https://www.uuidgenerator.net/)
+
 
 ## API 
 
