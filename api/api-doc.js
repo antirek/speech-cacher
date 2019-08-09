@@ -1,7 +1,7 @@
 module.exports = {
-  swagger: '2.0',
+  swagger: '2.0',  
   basePath: '/v1',
-  schemes: ['http'],
+  schemes: ['http', 'https'],
   info: {
     title: 'speech api',
     version: '1.0.0',
