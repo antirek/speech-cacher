@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 module.exports = (yaTTS, cache) => {
   /**
     *
@@ -27,7 +29,9 @@ module.exports = (yaTTS, cache) => {
       console.log('no in cache, generate');
       yaTTS.generate(text, params)
           .then(() => {
+            console.log(' --- after generate --- ');
             const filename = cache.getFilename(hash);
+            console.log('filename', filename);
             res.setHeader('Content-type', 'audio/ogg');
             res.download(filename);
           }).catch((err) => {
