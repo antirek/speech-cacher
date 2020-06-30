@@ -22,13 +22,14 @@
   },
   "homepage": "https://github.com/antirek/speech-cacher#readme",
   "devDependencies": {
-    "form-data": "^2.5.1",
     "eslint": "^7.3.1",
     "eslint-config-google": "^0.14.0",
-    "jest": "^24.9.0"
+    "form-data": "^2.5.1",
+    "husky": "^4.2.5",
+    "jest": "^24.9.0",
+    "lint-staged": "^10.2.11"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
     "config": "^3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -38,5 +39,13 @@
     "md5": "^2.2.1",
     "node-fetch": "2.6.0",
     "query-string": "^6.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
   }
 }

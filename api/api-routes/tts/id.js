@@ -8,7 +8,7 @@ module.exports = (yaTTS, cache) => {
     console.log('request params', req.params);
     console.log('request body:', req.body);
 
-    const text = req.body.text;
+    const text = (req.body.text).toString().toLowerCase();
     console.log('text for generate', text);
     console.log('voice', req.body.voice);
 

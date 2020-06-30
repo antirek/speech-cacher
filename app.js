@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const openapi = require('express-openapi');
 const fileUpload = require('express-fileupload');
 
@@ -9,7 +8,7 @@ const checkApikey = require('./lib/checkAuth');
 const createApp = (api, config) => {
   const app = express();
 
-  app.use(bodyParser.json());
+  app.use(express.json());
   app.use(cors());
   app.use(fileUpload());
 
