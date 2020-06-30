@@ -1,5 +1,5 @@
 module.exports = {
-  swagger: '2.0',  
+  swagger: '2.0',
   basePath: '/v1',
   schemes: ['http', 'https'],
   info: {
