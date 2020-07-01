@@ -20,6 +20,7 @@ const cache = new Cache({
 const YandexTTS = require('./lib/yandex-tts');
 const yaTTS = new YandexTTS({
   apiKey: config.yandexCloudApiKey,
+  textLengthMax: config.get('tts.textLengthMax'),
 }, cache);
 
 const YandexASR = require('./lib/yandex-asr');
