@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const openapi = require('express-openapi');
 const fileUpload = require('express-fileupload');
-
-const checkApikey = require('./lib/checkAuth');
+const checkApikey = require('check-auth-header');
 
 const createApp = (api, config) => {
   const app = express();
@@ -13,7 +12,7 @@ const createApp = (api, config) => {
   app.use(fileUpload());
 
   app.use(checkApikey({
-    apiKeys: config.apiKeys,
+    authKeys: config.apiKeys,
     authHeader: 'X-API-Key',
     excludes: ['/v1/api'],
   }));
