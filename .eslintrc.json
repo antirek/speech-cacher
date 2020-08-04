@@ -1,6 +1,7 @@
 {
   "extends": [
-    "google"
+    "google",
+    "plugin:sonarjs/recommended"
   ],
   "env": {
     "node": true
@@ -10,5 +11,6 @@
   },
   "rules": {
     "new-cap": ["error", { "properties": true }]
-  }
+  },
+  "plugins": ["sonarjs"]
 }

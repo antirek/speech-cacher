@@ -36,20 +36,23 @@ const app = createApp({
   },
 }, config);
 
+const url = 'http://localhost:3000/v1/tts/id';
+const headers = {
+  'Content-Type': 'application/json',
+  'X-API-Key': '1234',
+};
+
 describe('api tts', () => {
   it('get file from cache', (done) => {
     const server = app.listen(3000);
     cache.checkFile = jest.fn().mockReturnValue(true);
 
-    fetch('http://localhost:3000/v1/tts/id', {
+    fetch(url, {
       method: 'post',
       body: JSON.stringify({
         text: 'hello world',
       }),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': '1234',
-      },
+      headers,
     })
         .then((res) => {
           expect(res.status).toBe(200);
@@ -71,15 +74,12 @@ describe('api tts', () => {
     const server = app.listen(3000);
     cache.checkFile = jest.fn().mockReturnValue(false);
 
-    fetch('http://localhost:3000/v1/tts/id', {
+    fetch(url, {
       method: 'post',
       body: JSON.stringify({
         text: 'hello world',
       }),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': '1234',
-      },
+      headers,
     })
         .then((res) => {
           expect(res.status).toBe(200);
@@ -102,7 +102,7 @@ describe('api tts', () => {
     const server = app.listen(3000);
     cache.checkFile = jest.fn().mockReturnValue(true);
 
-    fetch('http://localhost:3000/v1/tts/id', {
+    fetch(url, {
       method: 'post',
       body: JSON.stringify({
         text: 'hello world 2',
@@ -112,10 +112,7 @@ describe('api tts', () => {
         speed: 'test_speed',
         format: 'test_format',
       }),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': '1234',
-      },
+      headers,
     })
         .then((res) => {
           expect(res.status).toBe(200);
